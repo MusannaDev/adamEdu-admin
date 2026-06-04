@@ -1,0 +1,386 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  overflow-x: hidden;
+}
+
+.home-container {
+  position: relative;
+  width: 100%;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background: linear-gradient(135deg, #2d5353 0%, #4a6b4a 30%, #6b7c3a 60%, #8b6b3a 85%, #a0643a 100%);
+  background-size: 200% 200%;
+  animation: gradientShift 20s ease infinite;
+}
+
+@keyframes gradientShift {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+/* Navigation Styles */
+.home-container .navigation-menu {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 10000;
+  background: rgba(45, 83, 83, 0.7);
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  padding: 15px 0;
+  transition: all 0.3s ease;
+}
+
+.home-container .navigation-menu:hover {
+  background: rgba(45, 83, 83, 0.85);
+}
+
+.home-container .nav {
+  display: flex;
+  justify-content: center;
+  gap: 30px;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.home-container .nav-item {
+  position: relative;
+}
+
+.home-container .nav-item a {
+  color: #ffffff;
+  font-size: 20px;
+  font-weight: 400;
+  padding: 10px 20px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  transition: all 0.3s ease;
+  position: relative;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  letter-spacing: 0.3px;
+  text-decoration: none;
+}
+
+.home-container .nav-icon {
+  font-size: 16px;
+  transition: transform 0.3s ease;
+  display: none;
+}
+
+.home-container .nav-item a::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 0;
+  height: 2px;
+  background: rgba(255, 255, 255, 0.8);
+  transition: width 0.3s ease;
+}
+
+.home-container .nav-item a:hover {
+  color: #ffffff;
+  transform: translateY(-2px);
+}
+
+.home-container .nav-item a:hover::after {
+  width: 70%;
+}
+
+.home-container .nav-item a.active {
+  color: #ffffff;
+  font-weight: 500;
+}
+
+.home-container .nav-item a.disabled {
+  color: rgba(255, 255, 255, 0.4);
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.home-container .nav-item a.disabled:hover {
+  transform: none;
+}
+
+.home-container .nav-item a.disabled::after {
+  display: none;
+}
+
+/* Animation Frame */
+.home-container .animation-frame {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex: 1;
+  width: 100%;
+  padding: 40px;
+  margin-top: 80px;
+}
+
+.home-container .animation-wrapper {
+  position: relative;
+  width: 100%;
+  max-width: 1200px;
+  height: 600px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Gradient Circles */
+.gradient-circles {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+}
+
+.circle {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(2px);
+  opacity: 0.7;
+  animation: floatCircle 20s ease-in-out infinite;
+}
+
+.circle-1 {
+  width: 400px;
+  height: 400px;
+  background: radial-gradient(circle at 30% 40%, rgba(100, 120, 120, 0.6), rgba(70, 90, 90, 0.4));
+  top: 10%;
+  left: 8%;
+  animation-delay: 0s;
+}
+
+.circle-2 {
+  width: 200px;
+  height: 200px;
+  background: radial-gradient(circle at 30% 40%, rgba(80, 100, 100, 0.5), rgba(60, 80, 80, 0.3));
+  bottom: 20%;
+  left: 5%;
+  animation-delay: 2s;
+}
+
+.circle-3 {
+  width: 500px;
+  height: 500px;
+  background: radial-gradient(circle at 30% 30%, 
+    rgba(200, 130, 80, 0.7) 0%,
+    rgba(180, 110, 70, 0.6) 30%,
+    rgba(100, 150, 150, 0.5) 60%,
+    rgba(150, 180, 120, 0.4) 100%
+  );
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  animation-delay: 1s;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+}
+
+.circle-4 {
+  width: 350px;
+  height: 350px;
+  background: radial-gradient(circle at 40% 40%, rgba(180, 160, 80, 0.5), rgba(160, 140, 70, 0.3));
+  bottom: 15%;
+  right: 10%;
+  animation-delay: 3s;
+}
+
+@keyframes floatCircle {
+  0%, 100% {
+    transform: translate(0, 0) scale(1);
+  }
+  33% {
+    transform: translate(20px, -30px) scale(1.05);
+  }
+  66% {
+    transform: translate(-20px, 20px) scale(0.95);
+  }
+}
+
+/* Welcome Content */
+.welcome-content {
+  position: relative;
+  z-index: 10;
+  text-align: center;
+  color: #ffffff;
+  text-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+  animation: fadeInUp 1.2s ease-out;
+}
+
+.welcome-title {
+  font-size: 72px;
+  font-weight: 700;
+  margin-bottom: 20px;
+  letter-spacing: 1px;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.welcome-subtitle {
+  font-size: 24px;
+  font-weight: 300;
+  opacity: 0.95;
+  letter-spacing: 0.5px;
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(40px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Hide sphere animation */
+.home-container .sphere-animation {
+  display: none;
+}
+
+/* Responsive Design */
+@media (max-width: 1024px) {
+  .welcome-title {
+    font-size: 56px;
+  }
+
+  .welcome-subtitle {
+    font-size: 20px;
+  }
+
+  .circle-1 {
+    width: 320px;
+    height: 320px;
+  }
+
+  .circle-3 {
+    width: 400px;
+    height: 400px;
+  }
+
+  .circle-4 {
+    width: 280px;
+    height: 280px;
+  }
+}
+
+@media (max-width: 768px) {
+  .home-container .navigation-menu {
+    padding: 12px 0;
+  }
+
+  .home-container .nav {
+    gap: 15px;
+  }
+
+  .home-container .nav-item a {
+    font-size: 18px;
+    padding: 8px 15px;
+  }
+
+  .home-container .animation-wrapper {
+    height: 500px;
+  }
+
+  .welcome-title {
+    font-size: 42px;
+  }
+
+  .welcome-subtitle {
+    font-size: 18px;
+  }
+
+  .circle-1 {
+    width: 250px;
+    height: 250px;
+  }
+
+  .circle-2 {
+    width: 150px;
+    height: 150px;
+  }
+
+  .circle-3 {
+    width: 320px;
+    height: 320px;
+  }
+
+  .circle-4 {
+    width: 220px;
+    height: 220px;
+  }
+}
+
+@media (max-width: 480px) {
+  .home-container .nav {
+    gap: 10px;
+    flex-wrap: wrap;
+    padding: 0 10px;
+  }
+
+  .home-container .nav-item a {
+    font-size: 16px;
+    padding: 6px 12px;
+  }
+
+  .home-container .animation-wrapper {
+    height: 400px;
+  }
+
+  .welcome-title {
+    font-size: 32px;
+  }
+
+  .welcome-subtitle {
+    font-size: 16px;
+  }
+
+  .circle-1 {
+    width: 180px;
+    height: 180px;
+  }
+
+  .circle-2 {
+    width: 100px;
+    height: 100px;
+  }
+
+  .circle-3 {
+    width: 250px;
+    height: 250px;
+  }
+
+  .circle-4 {
+    width: 160px;
+    height: 160px;
+  }
+}
+
+/* Logout Item Special Style */
+.logout-item a {
+  color: #ffcccc;
+}
+
+.logout-item a:hover {
+  color: #ffffff;
+}

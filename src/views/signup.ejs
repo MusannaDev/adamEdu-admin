@@ -1,0 +1,182 @@
+<%- include('includes/header') %>
+
+<link rel="stylesheet" type="text/css" href="/css/signup.css" />
+
+<body>
+  <div class="modern-signup-container">
+    <form 
+      onsubmit="return validateSignupForm()" 
+      action="/admin/signup" 
+      method="POST" 
+      enctype="multipart/form-data"
+    >
+      
+      <!-- Left Panel - Green Background -->
+      <div class="left-panel">
+        <div class="welcome-content">
+          <h1>Hello, Friend!</h1>
+          <p>Enter your personal details<br>and start journey with us</p>
+          
+          <div class="nav-links">
+            <a href="/admin" class="back-link">← Go back Home</a>
+            <p class="login-text">
+              Already signed up? 
+              <a href="/admin/login" class="login-link">Login</a>
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Right Panel - Form -->
+      <div class="right-panel">
+        <div class="form-container">
+          <h2>Create Account</h2>
+
+          <!-- Social Icons -->
+          <div class="social-icons">
+            <div class="social-icon">
+              <i class="fab fa-facebook-f"></i>
+            </div>
+            <div class="social-icon">
+              <i class="fab fa-instagram"></i>
+            </div>
+            <div class="social-icon">
+              <i class="fab fa-linkedin-in"></i>
+            </div>
+          </div>
+
+          <p class="divider-text">or use your phone for registration</p>
+
+          <!-- Admin Username -->
+          <div class="form-group">
+            <label>Admin *</label>
+            <div class="input-wrapper">
+              <i class="fas fa-user input-icon"></i>
+              <input 
+                type="text" 
+                class="form-control member-nick" 
+                name="memberNick"
+                placeholder="Username" 
+                required
+              />
+            </div>
+          </div>
+
+          <!-- Phone -->
+          <div class="form-group">
+            <label>Phone *</label>
+            <div class="input-wrapper">
+              <i class="fas fa-phone input-icon"></i>
+              <input 
+                type="text" 
+                class="form-control member-phone" 
+                name="memberPhone"
+                placeholder="Phone" 
+                required
+              />
+            </div>
+          </div>
+
+          <!-- Password -->
+          <div class="form-group">
+            <label>Password *</label>
+            <div class="input-wrapper">
+              <i class="fas fa-lock input-icon"></i>
+              <input 
+                type="password" 
+                class="form-control member-password" 
+                name="memberPassword"
+                placeholder="Password" 
+                required
+              />
+            </div>
+          </div>
+
+          <!-- Repeat Password -->
+          <div class="form-group">
+            <label>Repeat password *</label>
+            <div class="input-wrapper">
+              <i class="fas fa-lock input-icon"></i>
+              <input 
+                type="password" 
+                class="form-control confirm-password" 
+                name="confirmPassword"
+                placeholder="Repeat password" 
+                required
+              />
+            </div>
+          </div>
+
+          <!-- Image Upload Section -->
+          <div class="image-upload-section">
+            <h4>Product image</h4>
+            
+            <div class="image-preview">
+              <img 
+                class="upload-img-frame" 
+                src="/img/study-default.jpg" 
+                alt="Preview"
+                id="imagePreview"
+              />
+            </div>
+
+            <div class="upload-row">
+              <div class="file-input-wrapper">
+                <input
+                  class="upload-name"
+                  value="Choose image"
+                  disabled="disabled"
+                  id="fileName"
+                />
+                <label for="input-file" class="upload-btn">
+                  Upload Image
+                </label>
+                <input
+                  type="file"
+                  id="input-file"
+                  class="upload-hidden member-image"
+                  name="memberImage"
+                  accept="image/jpeg,image/jpg,image/png"
+                  onchange="previewImage(this)"
+                />
+              </div>
+            </div>
+
+            <p class="image-note">
+              Please upload restaurant image.<br>
+              Attention only: .jpg, .jpeg, or .png formats allowed!
+            </p>
+          </div>
+
+          <!-- Hidden Input -->
+          <input name="memberType" value="ADMIN" hidden />
+
+          <!-- Submit Button -->
+          <button class="submit-btn" type="submit">
+            Sign Up
+          </button>
+        </div>
+      </div>
+
+    </form>
+  </div>
+
+  <script type="text/javascript" src="/js/signup.js"></script>
+  <script>
+    // Image Preview Function
+    function previewImage(input) {
+      if (input.files && input.files[0]) {
+        const reader = new FileReader();
+        reader.onload = function(e) {
+          document.getElementById('imagePreview').src = e.target.result;
+        };
+        reader.readAsDataURL(input.files[0]);
+        
+        // Update file name
+        document.getElementById('fileName').value = input.files[0].name;
+      }
+    }
+  </script>
+</body>
+
+<%- include('includes/footer') %>

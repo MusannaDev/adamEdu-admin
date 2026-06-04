@@ -1,0 +1,82 @@
+<%- include('includes/header') %>
+
+<!-- Styles -->
+<link rel="stylesheet" type="text/css" href="/css/home.css" />
+
+<body>
+  <!-- Main Container -->
+  <div class="home-container">
+    
+    <!-- Navigation Menu -->
+    <nav class="navigation-menu">
+      <ul class="nav justify-content-center">
+        <!-- Home Link -->
+        <li class="nav-item">
+          <a class="nav-link active" href="/admin" aria-current="page">
+            Home
+          </a>
+        </li>
+
+        <!-- Guest Navigation -->
+        <% if(!member) { %>
+          <li class="nav-item">
+            <a class="nav-link" href="/admin/signup">
+              Signup
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/admin/login">
+              Login
+            </a>
+          </li>
+
+        <!-- Authenticated User Navigation -->
+        <% } else { %>
+          <li class="nav-item">
+            <a class="nav-link" href="/admin/course/all">
+              Courses
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/admin/user/all">
+              Users
+            </a>
+          </li>
+          <li class="nav-item logout-item">
+            <a 
+              class="nav-link" 
+              href="/admin/logout"
+              onclick="return confirm('Do you want to logout?')"
+            >
+              Logout
+            </a>
+          </li>
+        <% } %>
+      </ul>
+    </nav>
+
+    <!-- Hero Section with Gradient Circles -->
+    <main class="animation-frame">
+      <div class="animation-wrapper">
+        
+        <!-- Gradient Circles Background -->
+        <div class="gradient-circles">
+          <div class="circle circle-1"></div>
+          <div class="circle circle-2"></div>
+          <div class="circle circle-3"></div>
+          <div class="circle circle-4"></div>
+        </div>
+
+        <!-- Welcome Content -->
+        <div class="welcome-content">
+          <h1 class="welcome-title">Welcome to Adam <br/> Educational Platform</h1>
+          <p class="welcome-subtitle">Modern and Versatile Learning Platform</p>
+        </div>
+
+      </div>
+    </main>
+
+  </div>
+</body>
+
+<%- include('includes/footer') %>

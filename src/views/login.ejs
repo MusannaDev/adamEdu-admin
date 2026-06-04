@@ -1,0 +1,126 @@
+<%- include('includes/header') %>
+
+<link rel="stylesheet" type="text/css" href="/css/login.css" />
+
+<body>
+  <div class="modern-login-container">
+    <form 
+      onsubmit="return validateLoginForm()" 
+      action="/admin/login" 
+      method="POST"
+    >
+      
+      <!-- Left Panel - Green Background -->
+      <div class="left-panel">
+        <div class="welcome-content">
+          <h1>Welcome Back!</h1>
+          <p>To keep connected with us<br>please login with your info</p>
+          
+          <div class="nav-links">
+            <a href="/admin" class="back-link">← Go back Home</a>
+            <p class="signup-text">
+              Not registered yet? 
+              <a href="/admin/signup" class="signup-link">Sign Up</a>
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Right Panel - Login Form -->
+      <div class="right-panel">
+        <div class="form-container">
+          <h2>Enter</h2>
+          
+          <p class="subtitle">Sign in to your account</p>
+
+          <!-- Social Icons -->
+          <div class="social-icons">
+            <div class="social-icon">
+              <i class="fab fa-facebook-f"></i>
+            </div>
+            <div class="social-icon">
+              <i class="fab fa-google"></i>
+            </div>
+            <div class="social-icon">
+              <i class="fab fa-linkedin-in"></i>
+            </div>
+          </div>
+
+          <p class="divider-text">or use your account</p>
+
+          <!-- Restaurant Username -->
+          <div class="form-group">
+            <label>Admin *</label>
+            <div class="input-wrapper">
+              <i class="fas fa-user input-icon"></i>
+              <input 
+                type="text" 
+                class="form-control member-nick" 
+                name="memberNick"
+                placeholder="Username" 
+                required
+              />
+            </div>
+          </div>
+
+          <!-- Password -->
+          <div class="form-group">
+            <label>Password *</label>
+            <div class="input-wrapper">
+              <i class="fas fa-lock input-icon"></i>
+              <input 
+                type="password" 
+                class="form-control member-password" 
+                name="memberPassword"
+                placeholder="Password" 
+                required
+              />
+              <i class="fas fa-eye toggle-password" onclick="togglePassword()"></i>
+            </div>
+          </div>
+
+          <!-- Remember Me & Forgot Password -->
+          <div class="form-options">
+            <label class="remember-me">
+              <input type="checkbox" name="rememberMe">
+              <span>Remember me</span>
+            </label>
+            <a href="/admin/forgot-password" class="forgot-link">Forgot password?</a>
+          </div>
+
+          <!-- Submit Button -->
+          <button class="submit-btn" type="submit">
+            Login
+          </button>
+
+          <!-- Additional Links -->
+          <div class="additional-links">
+            <p>Don't have an account? <a href="/admin/signup">Create one</a></p>
+          </div>
+        </div>
+      </div>
+
+    </form>
+  </div>
+
+  <script type="text/javascript" src="/js/login.js"></script>
+  <script>
+    // Toggle password visibility
+    function togglePassword() {
+      const passwordInput = document.querySelector('.member-password');
+      const toggleIcon = document.querySelector('.toggle-password');
+      
+      if (passwordInput.type === 'password') {
+        passwordInput.type = 'text';
+        toggleIcon.classList.remove('fa-eye');
+        toggleIcon.classList.add('fa-eye-slash');
+      } else {
+        passwordInput.type = 'password';
+        toggleIcon.classList.remove('fa-eye-slash');
+        toggleIcon.classList.add('fa-eye');
+      }
+    }
+  </script>
+</body>
+
+<%- include('includes/footer') %>

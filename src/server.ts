@@ -1,6 +1,7 @@
 import dotenv from 'dotenv'; // external package and object config metodi borligi u/n
-dotenv.config(); // environment variablesni ishga tushurib yuklab beradi
-
+dotenv.config({
+  path: process.env.NODE_ENV === 'production' ? '.env.production' : '.env',
+}); // environment variablesni ishga tushurib yuklab beradi
 import mongoose from 'mongoose'; // external package object beradi connect metodi borligi u/n
 
 import server from "./app";
@@ -16,6 +17,5 @@ mongoose
   })
 })
 .catch((err) => console.log('ERROR on connection MongoDB', err));
-
 
 

@@ -23,7 +23,9 @@ const store = new MongoDBStore({
 /* 1-ENTRANCE */
 
 const app = express();
-app.use(express.static(path.join(__dirname, "public"))); // Middleware DP --> Traditional API -> publicni tashqi olamga ochiqlaydi
+const sourceRoot = path.join(__dirname, "..", "src");
+
+app.use(express.static(path.join(sourceRoot, "public"))); // Middleware DP --> Traditional API -> publicni tashqi olamga ochiqlaydi
 app.use("/uploads", express.static("./uploads"));
 app.use(express.urlencoded({extended: true})); // Middleware DP --> Traditional API
 app.use(express.json());  // Middleware DP --> Rest API
@@ -60,7 +62,7 @@ app.use(function(req, res, next) {
 // sessionda ma'lumotlar bo'lmasa undefined qilib beradi, agar member ma'lumotlari bolsa locals degan storagega tenglab beradi
 
 /* 3-VIEWS */
-app.set('views', path.join(__dirname, "views"));
+app.set('views', path.join(sourceRoot, "views"));
 app.set("view engine", "ejs");
 
 /* 4-ROUTERS */
